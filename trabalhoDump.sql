@@ -50,10 +50,10 @@ INSERT INTO `tb_area` (`tb_area_id`, `tb_user_id`, `tb_area_nome`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tb_assunto` (
-  `tb_asssunto_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tb_assunto_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tb_user_id` int(10) unsigned DEFAULT NULL,
   `tb_assunto_nome` varchar(30) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`tb_asssunto_id`),
+  PRIMARY KEY (`tb_assunto_id`),
   KEY `tb_user_id` (`tb_user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tb_assunto` (
 -- Extraindo dados da tabela `tb_assunto`
 --
 
-INSERT INTO `tb_assunto` (`tb_asssunto_id`, `tb_user_id`, `tb_assunto_nome`) VALUES
+INSERT INTO `tb_assunto` (`tb_assunto_id`, `tb_user_id`, `tb_assunto_nome`) VALUES
 (1, 1, 'Serviço Público'),
 (2, 1, 'SQL'),
 (3, 1, 'Threads');
@@ -73,9 +73,9 @@ INSERT INTO `tb_assunto` (`tb_asssunto_id`, `tb_user_id`, `tb_assunto_nome`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `tb_assunto_and_tb_disciplina` (
-  `tb_asssunto_id` int(10) unsigned NOT NULL,
+  `tb_assunto_id` int(10) unsigned NOT NULL,
   `tb_disciplina_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`tb_asssunto_id`,`tb_disciplina_id`),
+  PRIMARY KEY (`tb_assunto_id`,`tb_disciplina_id`),
   KEY `tb_disciplina_id` (`tb_disciplina_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `tb_assunto_and_tb_disciplina` (
 -- Extraindo dados da tabela `tb_assunto_and_tb_disciplina`
 --
 
-INSERT INTO `tb_assunto_and_tb_disciplina` (`tb_asssunto_id`, `tb_disciplina_id`) VALUES
+INSERT INTO `tb_assunto_and_tb_disciplina` (`tb_assunto_id`, `tb_disciplina_id`) VALUES
 (3, 1),
 (2, 2),
 (1, 3);
@@ -95,9 +95,9 @@ INSERT INTO `tb_assunto_and_tb_disciplina` (`tb_asssunto_id`, `tb_disciplina_id`
 --
 
 CREATE TABLE IF NOT EXISTS `tb_assunto_and_tb_questao` (
-  `tb_asssunto_id` int(10) unsigned NOT NULL,
+  `tb_assunto_id` int(10) unsigned NOT NULL,
   `tb_questao_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`tb_asssunto_id`,`tb_questao_id`),
+  PRIMARY KEY (`tb_assunto_id`,`tb_questao_id`),
   KEY `tb_questao_id` (`tb_questao_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `tb_assunto_and_tb_questao` (
 -- Extraindo dados da tabela `tb_assunto_and_tb_questao`
 --
 
-INSERT INTO `tb_assunto_and_tb_questao` (`tb_asssunto_id`, `tb_questao_id`) VALUES
+INSERT INTO `tb_assunto_and_tb_questao` (`tb_assunto_id`, `tb_questao_id`) VALUES
 (1, 1),
 (3, 2),
 (2, 3),
@@ -250,14 +250,14 @@ ALTER TABLE `tb_assunto`
 -- Restrições para a tabela `tb_assunto_and_tb_disciplina`
 --
 ALTER TABLE `tb_assunto_and_tb_disciplina`
-  ADD CONSTRAINT `tb_assunto_and_tb_disciplina_ibfk_1` FOREIGN KEY (`tb_asssunto_id`) REFERENCES `tb_assunto` (`tb_asssunto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_assunto_and_tb_disciplina_ibfk_1` FOREIGN KEY (`tb_assunto_id`) REFERENCES `tb_assunto` (`tb_assunto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_assunto_and_tb_disciplina_ibfk_2` FOREIGN KEY (`tb_disciplina_id`) REFERENCES `tb_disciplina` (`tb_disciplina_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restrições para a tabela `tb_assunto_and_tb_questao`
 --
 ALTER TABLE `tb_assunto_and_tb_questao`
-  ADD CONSTRAINT `tb_assunto_and_tb_questao_ibfk_1` FOREIGN KEY (`tb_asssunto_id`) REFERENCES `tb_assunto` (`tb_asssunto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_assunto_and_tb_questao_ibfk_1` FOREIGN KEY (`tb_assunto_id`) REFERENCES `tb_assunto` (`tb_assunto_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_assunto_and_tb_questao_ibfk_2` FOREIGN KEY (`tb_questao_id`) REFERENCES `tb_questao` (`tb_questao_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
