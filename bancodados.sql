@@ -51,10 +51,10 @@ CREATE TABLE TB_DISCIPLINA (
 ENGINE=InnoDB;
 
 CREATE TABLE TB_ASSUNTO (
-  tb_asssunto_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  tb_assunto_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   tb_user_id INTEGER UNSIGNED,
   tb_assunto_nome VARCHAR(30) NOT NULL,
-  PRIMARY KEY(tb_asssunto_id),
+  PRIMARY KEY(tb_assunto_id),
   FOREIGN KEY(tb_user_id)
     REFERENCES TB_USUARIOS(tb_user_id)
       ON DELETE SET NULL
@@ -92,11 +92,11 @@ CREATE TABLE TB_QUESTAO (
 );
 
 CREATE TABLE TB_ASSUNTO_and_TB_QUESTAO (
-  tb_asssunto_id INTEGER UNSIGNED NOT NULL,
+  tb_assunto_id INTEGER UNSIGNED NOT NULL,
   tb_questao_id INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(tb_asssunto_id, tb_questao_id),
-  FOREIGN KEY(tb_asssunto_id)
-    REFERENCES TB_ASSUNTO(tb_asssunto_id)
+  PRIMARY KEY(tb_assunto_id, tb_questao_id),
+  FOREIGN KEY(tb_assunto_id)
+    REFERENCES TB_ASSUNTO(tb_assunto_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE,
   FOREIGN KEY(tb_questao_id)
@@ -119,11 +119,11 @@ CREATE TABLE TB_DISCIPLINA_and_TB_AREA (
       ON UPDATE CASCADE
 );
 CREATE TABLE TB_ASSUNTO_and_TB_DISCIPLINA (
-  tb_asssunto_id INTEGER UNSIGNED NOT NULL,
+  tb_assunto_id INTEGER UNSIGNED NOT NULL,
   tb_disciplina_id INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(tb_asssunto_id, tb_disciplina_id),
-  FOREIGN KEY(tb_asssunto_id)
-    REFERENCES TB_ASSUNTO(tb_asssunto_id)
+  PRIMARY KEY(tb_assunto_id, tb_disciplina_id),
+  FOREIGN KEY(tb_assunto_id)
+    REFERENCES TB_ASSUNTO(tb_assunto_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE,
   FOREIGN KEY(tb_disciplina_id)
