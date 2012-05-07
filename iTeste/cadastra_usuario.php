@@ -127,7 +127,7 @@ if (texto.substring(0,1) != saida)
                              $nr++;
                                  }
                     ?>
-                    </select>
+                    </select></div>
                     <div id="cad-user-end-comp">Complemento:
 										<input name="complemento" type="text" id="complemento" height="14px" size="43" />
 									</div>
