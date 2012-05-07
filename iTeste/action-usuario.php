@@ -37,7 +37,7 @@
 						
 						if(!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $email)){
 							echo "<script>alert('E-mail inválido.!');</script>";
-							echo "<script>location.href = 'cadastro_usuario.php';</script>"; 
+							echo "<script>location.href = 'cadastra_usuario.php';</script>"; 
 						}else{
 							if(!preg_match('/^[0-9]{5,5}([- ]?[0-9]{3,3})?$/', $cep)) {
 								echo "<script>alert('CEP inválido.!');</script>";

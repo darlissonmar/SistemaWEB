@@ -94,7 +94,7 @@ if ($_SESSION['validacao'] == "1" )
 ?>
 
 <script type="text/javascript">
-alert("Somente usuarios logados podem realizar a prova");
+alert("Somente usuários logados podem realizar a prova");
 </script>
 
 <?

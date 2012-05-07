@@ -13,7 +13,7 @@
 										LIKE '".$titulo."'",$conexao);
 
 			if (($tb_disciplina_id == "")|| ($titulo== "")|| ($codigo== "") ){
-			echo "<script>alert('Atencao! Todos os campos obrigatórios (*) devem ser preenchidos.!');</script>";
+			echo "<script>alert('Atencão! Todos os campos obrigatórios (*) devem ser preenchidos.!');</script>";
 			echo "<script>location.href = 'cadastra_assunto.php';</script>";
 			}else{
 				if(mysql_num_rows($query_cadastra)>=1){

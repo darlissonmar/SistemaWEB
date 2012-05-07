@@ -12,7 +12,10 @@ include("conectaBD.php");
 		$sql=mysql_query($busca,$conexao) or die (mysql_erro());
 		$f = mysql_fetch_object($sql);
 		
-		if (mysql_num_rows($sql)==1){
+		if (mysql_num_rows($sql)==0){
+		echo "<script>alert('Não foi possível Logar: Login e/ou Senha inválido');</script>";
+		echo "<script>location.href = 'login.php';</script>";
+	}else{
 		$validacao = "1";
 		session_start();
 		$_SESSION['usuario'] = $f->tb_user_login;
@@ -43,10 +46,7 @@ include("conectaBD.php");
 			echo "<script>location.href = 'menu_aluno.php';</script>";
 			}
 		$_SESSION['user_url'] = $url;	
-		$_SESSION['user_tipo_nome'] = $tipo;
-	}else{
-		echo "<script>alert('Não foi possível Logar: Login e/ou Senha inválido');</script>";
-		echo "<script>location.href = 'login.php';</script>";
-}
+		$_SESSION['user_tipo_nome'] = $tipo;	
+		}
 
 ?>
