@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 11/04/2012 às 04h43min
+-- Tempo de Geração: 07/05/2012 às 05h53min
 -- Versão do Servidor: 5.5.16
 -- Versão do PHP: 5.3.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Banco de Dados: `trabalho`
+-- Banco de Dados: `trabalho2`
 --
 
 -- --------------------------------------------------------
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `tb_assunto` (
   `tb_assunto_nome` varchar(30) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`tb_assunto_id`),
   KEY `tb_user_id` (`tb_user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `tb_assunto`
@@ -64,7 +64,8 @@ CREATE TABLE IF NOT EXISTS `tb_assunto` (
 INSERT INTO `tb_assunto` (`tb_assunto_id`, `tb_user_id`, `tb_assunto_nome`) VALUES
 (1, 1, 'Serviço Público'),
 (2, 1, 'SQL'),
-(3, 1, 'Threads');
+(3, 1, 'Threads'),
+(5, 1, 'Protocolo TCP');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `tb_assunto_and_tb_disciplina` (
 INSERT INTO `tb_assunto_and_tb_disciplina` (`tb_assunto_id`, `tb_disciplina_id`) VALUES
 (3, 1),
 (2, 2),
-(1, 3);
+(1, 3),
+(5, 5);
 
 -- --------------------------------------------------------
 
@@ -123,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `tb_disciplina` (
   `tb_disciplina_nome` varchar(30) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`tb_disciplina_id`),
   KEY `tb_user_id` (`tb_user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `tb_disciplina`
@@ -132,7 +134,8 @@ CREATE TABLE IF NOT EXISTS `tb_disciplina` (
 INSERT INTO `tb_disciplina` (`tb_disciplina_id`, `tb_user_id`, `tb_disciplina_nome`) VALUES
 (1, 1, 'Sistemas Operacionais'),
 (2, 2, 'Banco de Dados'),
-(3, 1, 'Direito Administrativo');
+(3, 1, 'Direito Administrativo'),
+(5, 1, 'Redes de Computadores');
 
 -- --------------------------------------------------------
 
@@ -154,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `tb_disciplina_and_tb_area` (
 INSERT INTO `tb_disciplina_and_tb_area` (`tb_disciplina_id`, `tb_area_id`) VALUES
 (1, 1),
 (2, 1),
+(5, 1),
 (3, 2);
 
 -- --------------------------------------------------------
@@ -204,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   `tb_user_unome` varchar(70) CHARACTER SET latin1 NOT NULL,
   `tb_user_email` varchar(50) CHARACTER SET latin1 NOT NULL,
   `tb_user_login` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `tb_user_senha` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `tb_user_senha` varchar(60) CHARACTER SET latin1 NOT NULL,
   `tb_user_tipo` char(1) CHARACTER SET latin1 NOT NULL,
   `tb_user_sexo` char(1) CHARACTER SET latin1 NOT NULL,
   `tb_user_data_nasc` date NOT NULL,
@@ -219,16 +223,16 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   PRIMARY KEY (`tb_user_id`),
   UNIQUE KEY `tb_user_login` (`tb_user_login`,`tb_user_email`),
   KEY `tb_user_id_2` (`tb_user_id_2`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `tb_usuarios`
 --
 
 INSERT INTO `tb_usuarios` (`tb_user_id`, `tb_user_id_2`, `tb_user_pnome`, `tb_user_unome`, `tb_user_email`, `tb_user_login`, `tb_user_senha`, `tb_user_tipo`, `tb_user_sexo`, `tb_user_data_nasc`, `tb_user_end_rua`, `tb_user_end_numero`, `tb_user_end_cidade`, `tb_user_end_uf`, `tb_user_end_cep`, `tb_user_end_comp`, `tb_user_end_bairro`, `tb_user_telefone`) VALUES
-(1, NULL, 'João', 'da Silva', 'joao@gmail.com', 'jsilva', 'joao123', '1', 'M', '1982-04-10', 'Visconde de Porto Alegre', 2121, 'Manaus', 'AM', '69010-140', NULL, 'Alvorada', '3367-2124'),
-(2, 1, 'Maria', 'Pereira', 'maria@gmail.com', 'mpereira', 'maria123', '2', 'F', '1983-04-10', 'São Gabriel da Cachoeira', 2001, 'Manaus', 'AM', '69050-120', 'casa 2', 'Aleixo', '3367-1418'),
-(3, 1, 'Jorginho', 'Gomes', 'jojo@hotmail.com', 'jgomes', 'jorginho123', '3', 'M', '1992-04-10', 'Ramos Ferreira', 1115, 'Manaus', 'AM', '69021-121', NULL, 'Centro', '2101-1417');
+(1, NULL, 'João', 'da Silva', 'joao@gmail.com', 'jsilva', '3dfcab79ed21fd89c9eb25e9864a6155', '1', 'M', '1982-04-10', 'Visconde de Porto Alegre', 2121, 'Manaus', 'AM', '69010-140', NULL, 'Alvorada', '3367-2124'),
+(2, 1, 'Maria', 'Pereira', 'maria@gmail.com', 'mpereira', 'f8461b554d59b3014e8ff5165dc62fac', '2', 'F', '1983-04-10', 'São Gabriel da Cachoeira', 2001, 'Manaus', 'AM', '69050-120', 'casa 2', 'Aleixo', '3367-1418'),
+(3, 1, 'Jorginho', 'Gomes', 'jojo@hotmail.com', 'jgomes', '239016fe1dc20150764187c41c59936e', '3', 'M', '1992-04-10', 'Ramos Ferreira', 1115, 'Manaus', 'AM', '69021-121', NULL, 'Centro', '2101-1417');
 
 --
 -- Restrições para as tabelas dumpadas

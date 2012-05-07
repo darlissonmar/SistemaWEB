@@ -21,9 +21,10 @@
 	<!-- all our JS is at the bottom of the page, except for Modernizr. -->
 	<script src="js/modernizr-1.7.min.js"></script>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
-<body>
+<body background="images/fundo.jpg">
 
 <div class="wrapper"><!-- not needed? up to you: http://camendesign.com/code/developpeurs_sans_frontieres -->
 
