@@ -7,7 +7,7 @@ CREATE TABLE TB_USUARIOS (
   tb_user_login VARCHAR(30) NOT NULL,
   tb_user_senha VARCHAR(30) NOT NULL,
   tb_user_tipo CHAR(1) NOT NULL CHECK (tb_user_tipo IN( 1,2,3)),
-  tb_user_sexo CHAR(1) NOT NULL,
+  tb_user_sexo CHAR(1) NOT NULL CHECK (tb_user_sexo IN( 'M','F')),
   tb_user_data_nasc DATE NOT NULL,
   tb_user_end_rua VARCHAR(30) NOT NULL,
   tb_user_end_numero INTEGER NOT NULL,
@@ -29,7 +29,10 @@ ENGINE=InnoDB;
 CREATE TABLE TB_AREA (
   tb_area_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   tb_user_id INTEGER UNSIGNED,
+  tb_area_data_cad TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+  ON UPDATE CURRENT_TIMESTAMP,
   tb_area_nome VARCHAR(30) NOT NULL,
+  UNIQUE (tb_area_nome),
   PRIMARY KEY(tb_area_id),
   FOREIGN KEY(tb_user_id)
     REFERENCES TB_USUARIOS(tb_user_id)
@@ -42,6 +45,9 @@ CREATE TABLE TB_DISCIPLINA (
   tb_disciplina_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   tb_user_id INTEGER UNSIGNED,
    tb_disciplina_nome VARCHAR(30) NOT NULL,
+   tb_disciplina_data_cad TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+   ON UPDATE CURRENT_TIMESTAMP,
+   UNIQUE (tb_disciplina_nome),
   PRIMARY KEY(tb_disciplina_id),
   FOREIGN KEY(tb_user_id)
     REFERENCES TB_USUARIOS(tb_user_id)
@@ -54,6 +60,8 @@ CREATE TABLE TB_ASSUNTO (
   tb_assunto_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   tb_user_id INTEGER UNSIGNED,
   tb_assunto_nome VARCHAR(30) NOT NULL,
+  tb_assunto_data_cad TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+  ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY(tb_assunto_id),
   FOREIGN KEY(tb_user_id)
     REFERENCES TB_USUARIOS(tb_user_id)
@@ -76,7 +84,9 @@ CREATE TABLE TB_QUESTAO (
   tb_questao_op_3 TEXT NOT NULL,
   tb_questao_op_4 TEXT NOT NULL,
   tb_questao_op_5 TEXT NOT NULL,
-  PRIMARY KEY(tb_questao_id),
+  tb_questao_data_cad TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+  ON UPDATE CURRENT_TIMESTAMP,
+   PRIMARY KEY(tb_questao_id),
   FOREIGN KEY(tb_disciplina_id)
     REFERENCES TB_DISCIPLINA(tb_disciplina_id)
       ON DELETE CASCADE
