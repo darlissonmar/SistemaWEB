@@ -18,7 +18,7 @@ if ($_SESSION['validacao'] == "1" && $_SESSION['user_tipo'] == "1")
 				<div id="topo">
 					<div id="logo"></div>
 					<div id="titulo"><p>Sistema para Testes Online v 1.0</p></div>
-		<div id="dados-user">Olá, <?php echo "<b><font color='#17EC29'>". $_SESSION['usuario']."</font></b>";?> : <?php echo "<b><font color='#17EC29'>".  $_SESSION['user_tipo_nome']."</font></b>";?>, Seja bem vindo(<a href="logout.php">sair</a>)</div>
+		<div id="dados-user">Olá, <?php echo "<b><font color='#17EC29' face='customface'>". $_SESSION['usuario']."</font></b>";?> : <?php echo "<b><font color='#17EC29' >".  $_SESSION['user_tipo_nome']."</font></b>";?>, Seja bem vindo(<a href="logout.php">sair</a>)</div>
 					</div>
 				
 			<div id="body">

@@ -13,6 +13,27 @@ if ($_SESSION['validacao'] == "1" )
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Resolve Prova</title>
 <link rel="stylesheet" type="text/css" href="css/style_2.css">
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(
+		function(){
+            $('#ques-area').change(
+			function(){
+			$('#ques-disci').load('busca_disciplina.php?id_area='+$('#ques-area').val() );
+			 $('#ques-assunto').html('<option value="">Selecione uma Disciplina</option>');
+			});
+			
+			$('#ques-disci').change(
+			function(){
+                $('#ques-assunto').load('busca_assunto.php?id_disciplina='+$('#ques-disci').val() );
+
+            });
+	
+        });
+
+    </script>
+
 </head>
 
 	<body background="images/fundo.jpg" >
@@ -35,7 +56,21 @@ if ($_SESSION['validacao'] == "1" )
 						<legend>Dados da Prova</legend>
 							<div id="prova-area">Área:
 								<select name="ques-area" size="1" id="ques-area">
-									<option>Selecione a Área</option>
+									<option value='-1'>Selecione uma Área</option>
+                                     <?	include("conectaBD.php");
+									  $area = mysql_query("SELECT * FROM tb_area",$conexao);
+									
+									 if (mysql_num_rows($area)>0){
+									 
+									 while($area_row=mysql_fetch_array($area)){
+									 $tb_area_nome=nl2br($area_row['tb_area_nome']);
+									 $tb_area_id=$area_row['tb_area_id'];
+									 echo "<option value='".$tb_area_id."'>$tb_area_nome</option>";
+									 }									 
+									 }else{
+									 echo "<option value=''>Nenhuma Area Cadastrada</option>";
+									 } ?>
+									 <option></option>
 								</select>
 							</div>
 							
