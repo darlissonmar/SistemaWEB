@@ -44,7 +44,7 @@ if ($_SESSION['validacao'] == "1" && $_SESSION['user_tipo'] == "1")
          <li><a href="#" class="MenuBarItemSubmenu">Resolver Questões </a>
      		<ul>
         		<li><a href="resolve_teste.php">Livres</a></li>
-        		<li><a href="resolve_prova.php">Prova</a></li>    
+        		<li><a href="elabora_prova.php">Prova</a></li>    
       		</ul>
         </li>
 		<li><a href="consulta_usuario.php" class="MenuBarItemSubmenu">Buscar Usuário</a></li>
