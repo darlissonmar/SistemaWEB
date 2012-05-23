@@ -2,8 +2,8 @@
 	border: 1px solid;
 	border-color:#CCC;
 	position:absolute;
-	left:217px;
-	top:15px;
+	left:18px;
+	top:3px;
 	width:822px;
 	height:117px;
 	z-index:1;
@@ -49,8 +49,8 @@
 	border-color:#CCC;
 	background: #FAFAFA;
 	position:absolute;
-	left:216px;
-	top:135px;
+	left:18px;
+	top:115px;
 	width:822px;
 	height:572px;
 	z-index:1;
@@ -79,16 +79,20 @@
 }
 
 #tudo{
-	position:relative;
+	position:absolute;
+	left:170px;
+	top:3px;
+	width:855px;
+	height: 757px;
 	}	
 
 #rodape{
 	background:#CCC;
 	position:absolute;
-	bottom:-764px;
+	bottom: 10px;
 	width: 823px;
 	height: 41px;
-	left: 217px;
+	left: 19px;
 	font-family: Arial, Helvetica, sans-serif;
 	}
 #tudo #rodape p {
@@ -566,51 +570,52 @@
 	z-index:1;
 }
 #teste-enun {
-	position:absolute;
-	left:28px;
-	top:32px;
-	width:596px;
-	height:103px;
-	z-index:1;
+	background-color:ffffff; 
+    border-style:solid; 
+    border-color:ffffff; 
+    border-width:0px;
+    font-family:arial;
+    font-size:12pt;
+    text-align: left;
 }
 #teste-op1 {
 	position:absolute;
-	left:28px;
-	top:152px;
-	width:595px;
-	height:24px;
+	left:1px;
+	top:94px;
+	width:665px;
+	height:35px;
 	z-index:1;
 }
 #teste-op2 {
 	position:absolute;
-	left:28px;
-	top:198px;
-	width:595px;
-	height:23px;
+	left:0px;
+	top:150px;
+	width:664px;
+	height:30px;
 	z-index:1;
 }
 #teste-op3 {
 	position:absolute;
-	left:28px;
-	top:239px;
-	width:594px;
-	height:24px;
+	left:1px;
+	top:199px;
+	width:664px;
+	height:31px;
 	z-index:1;
 }
 #teste-op4 {
 	position:absolute;
-	left:28px;
-	top:278px;
-	width:593px;
-	height:24px;
+	left:1px;
+	top:246px;
+	width:663px;
+	height:29px;
 	z-index:1;
 }
 #teste-op5 {
 	position:absolute;
-	left:28px;
-	top:321px;
-	width:596px;
-	height:20px;
+	left:1px;
+	top:296px;
+	width:668px;
+	height:30px;
 	z-index:1;
 }
 #teste-opCorreta {
@@ -632,17 +637,24 @@
 
 #teste-nova-questao{
 	position:absolute;
-	left:368px;
-	top:382px;
+	left:303px;
+	top:423px;
 	width:131px;
 	height:33px;
 	z-index:1;
 }
-
+#teste-nova{
+	position:absolute;
+	left:655px;
+	top:420px;
+	width:131px;
+	height:33px;
+	z-index:1;
+}
 #teste-cancela {
 	position:absolute;
-	left:207px;
-	top:382px;
+	left:10px;
+	top:424px;
 	width:138px;
 	height:30px;
 	z-index:1;

@@ -1,5 +1,7 @@
 <?php
 
+	//ini_set("display_errors",0);
+	ini_set('default_charset','UTF-8'); 
 	$host_nome="localhost";
 	$admin_nome="root";
 	$senha="";
