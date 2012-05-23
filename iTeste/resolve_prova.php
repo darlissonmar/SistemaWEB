@@ -106,28 +106,6 @@ $(document).ready(function() {
 			
 			
 </script>
-
-<style type="text/css">
-#mensagem {
-	position:absolute;
-	left:282px;
-	top:366px;
-	width:286px;
-	height:27px;
-	z-index:1;
-	font-weight: bold;
-}
-#ver {
-	position:absolute;
-	left:604px;
-	top:370px;
-	width:132px;
-	height:21px;
-	color: #09F;
-	text-align: center;
-	visibility: hidden;
-}
-</style>
 </head>
 
 <body background="images/fundo.jpg" >
@@ -143,7 +121,7 @@ $(document).ready(function() {
 	<div id="body">
 <div id="link-home"><a href="<?php echo $_SESSION['user_url'];?>">Menu Principal</a></div>
 				<div id="menu" >
-					<div class="texto_p" id="texto">Resolver Teste</div>
+					<div class="texto_p" id="texto">Resolvendo Prova</div>
 				</div>
 			<div id="info">
 			  <form id="form1" name="form1" method="post" >
@@ -155,32 +133,20 @@ $(document).ready(function() {
 							<li><input type='radio' name='botao' id='botao' value='3'/><?php echo $tb_questao_op_3;?></li>
 							<li><input type='radio' name='botao' id='botao'  value='4'/><?php echo $tb_questao_op_4;?></li>
 							<li><input type='radio' name='botao'  id='botao' value='5' /><?php echo$tb_questao_op_5;?></li>
+							<li><input type='hidden' name='resp' id='resp' value='<?php echo $tb_questao_op_correta;?>'</li>
 						</ul>
 					</div>
-					
-					<!--<div id="teste-enun" ><?php echo $enunciado; ?></div>
-					<div id="teste-op1" ><input type='radio' name='botao' id='botao' value='1' /> 
-					<?php echo $tb_questao_op_1;?></div>
-				  <div id="teste-op2"  ><input type='radio' name='botao' id='botao' value='2'/> 
-				  <?php echo $tb_questao_op_2;?></div>
-				  <div id="teste-op3" ><input type='radio' name='botao' id='botao' value='3'/> 
-				    <?php echo $tb_questao_op_3;?></div>
-          <div id="teste-op4"><input type='radio' name='botao' id='botao'  value='4'/> 
-            <?php echo $tb_questao_op_4;?></div>
-		      <div id="teste-op5"><input type='radio' name='botao'  id='botao' value='5' /> 
-		        <?php echo$tb_questao_op_5;?></div>							
-<input type='hidden' name='resp' id='resp' value='<?php echo $tb_questao_op_correta;?>'/>-->
-					<div id="teste-nova-questao"><input type="button" name="tes-btn-confirmar" id="tes-btn-confirmar"value="Corrigir" style="height: 28px; width:120px"/>
+						
+				<div id="teste-nova-questao"><input type="button" name="tes-btn-confirmar" id="tes-btn-confirmar"value="Corrigir" style="height: 28px; width:120px"/>
 				  </div>
-				<div id="teste-nova"><input type="button" onclick="location.href='resolve_teste.php'"name="tes-btn-nova-questao" id="tes-btn-nova"value="Nova Questão" style="height: 28px; width:120px"/>
+				<div id="teste-nova"><input type="button" onclick="location.href='elabora_prova.php'"name="tes-btn-nova-questao" id="tes-btn-nova"value="Nova Prova" style="height: 28px; width:120px"/>
 			    </div>
 					<div id="teste-cancela">
-						<input type="button" onclick="location.href='<?php echo $_SESSION['user_url'];?>'" name="teses-btn-cancelar" id="teses-btn-cancelar" value="Sair" style="height: 28px; width: 120px" />
+						<input type="button" onclick="location.href='<?php echo $_SESSION['user_url'];?>'" name="teses-btn-cancelar" id="teses-btn-cancelar" value="Cancelar" style="height: 28px; width: 120px" />
 </div>
 								
               </form>
-				<div id="mensagem"></div>
-                <div id="ver"><a id="exibir" href="#">Resposta Correta</a></div>				
+							
 			</div>
   </div>
 	
