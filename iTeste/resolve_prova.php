@@ -1,127 +1,197 @@
 ﻿<?
-
 session_start();
 
-if ($_SESSION['validacao'] == "1" )
+if ($_SESSION['validacao'] == "1")
 {
 ?>
-
+<?php
+	
+	$area 		  =	$_POST['ques-area'];
+	$disciplina   =	$_POST['ques-disci'];
+	$assunto 	  =	$_POST['ques-assunto'];
+	$dificuldade  = $_POST['ques-dific'];
+	$nro_questoes = $_POST['provanro'];
+	
+	include("conectaBD.php");	
+				$questao = mysql_query("	SELECT DISTINCT *
+											FROM tb_questao 
+											ORDER BY rand();",$conexao);
+	?>
+		
+	<?php
+		$lista=mysql_fetch_array($questao);
+		$enunciado= nl2br($lista['tb_questao_enunciado']);
+		$tb_questao_op_1=($lista['tb_questao_op_1']);
+		$tb_questao_op_2=($lista['tb_questao_op_2']);
+		$tb_questao_op_3=($lista['tb_questao_op_3']);
+		$tb_questao_op_4=($lista['tb_questao_op_4']);
+		$tb_questao_op_5=($lista['tb_questao_op_5']);
+		$tb_questao_op_correta =($lista['tb_questao_op_correta']);
+	?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Resolve Prova</title>
+<title>Resolve Teste</title>
 <link rel="stylesheet" type="text/css" href="css/style_2.css">
 <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
 
-    <script type="text/javascript">
-        $(document).ready(
-		function(){
-            $('#ques-area').change(
-			function(){
-			$('#ques-disci').load('busca_disciplina.php?id_area='+$('#ques-area').val() );
-			 $('#ques-assunto').html('<option value="">Selecione uma Disciplina</option>');
+$(document).ready(function() {
+			
+				$('#tes-btn-confirmar').click(function() 
+				{    
+						
+					var valor = "";
+					
+					$('input:radio[name=botao]').each(function()
+					{
+						if ($(this).is(':checked'))
+						{
+							valor = parseInt($(this).val());
+					}});
+					corrige(valor,$('#resp').val());
+				});
+				$('a#exibir').click(function(){
+				var correto = parseInt($('#resp').val());
+				switch(correto){
+							case 1:$("#options").is('input:checked').css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 2:$("#options").is('input:checked').css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600);break; 
+							case 3:$("#options").is('input:checked').css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 4:$("#options").is('input:checked').css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 5: $("#options").is('input:checked').css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+				}
+				//$('#body').slideDown(600).delay(600).slideDown(600);
+      	   });
+			
+		
+			
 			});
 			
-			$('#ques-disci').change(
-			function(){
-                $('#ques-assunto').load('busca_assunto.php?id_disciplina='+$('#ques-disci').val() );
-
-            });
+	function corrige( valor,correto){
+		$('#tes-btn-confirmar').hide();
 	
-        });
+		if(valor == correto){
+		
+		$('#mensagem').text('Resposta Correta!');
+		$('#mensagem').css('color', 'green');
+		switch(valor){
+							case 1:$("#teste-op1").css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 2:$("#teste-op2").css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600);break; 
+							case 3:$("#teste-op3").css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 4:$("#teste-op4").css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							case 5: $("#teste-op5").css('backgroundColor','#0c3').fadeOut(1).delay(200).toggle(600); break; 
+							}
+							
+		return 0;
+			}
+						
+		else{
+		
+		switch(valor){
+							case 1:$("#teste-op1").css('backgroundColor','#c00').delay(200).toggle(600); break; 
+							case 2:$("#teste-op2").css('backgroundColor','#c00').delay(200).toggle(600);break; 
+							case 3:$("#teste-op3").css('backgroundColor','#c00').delay(200).toggle(600);break; 
+							case 4:$("#teste-op4").css('backgroundColor','#c00').delay(200).toggle(600); break; 
+							case 5: $("#teste-op5").css('backgroundColor','#c00').delay(200).toggle(600);break; 
+							}
+		$('#mensagem').text('Resposta Incorreta!');
+		$('#mensagem').css('color', 'red');
+		$('#ver').css('visibility','visible');
+			}
+		}
 
-    </script>
+			
+			
+			
+</script>
 
+<style type="text/css">
+#mensagem {
+	position:absolute;
+	left:282px;
+	top:366px;
+	width:286px;
+	height:27px;
+	z-index:1;
+	font-weight: bold;
+}
+#ver {
+	position:absolute;
+	left:604px;
+	top:370px;
+	width:132px;
+	height:21px;
+	color: #09F;
+	text-align: center;
+	visibility: hidden;
+}
+</style>
 </head>
 
-	<body background="images/fundo.jpg" >
-		<div id="tudo">
-			<div id="topo">
-				<div id="logo"></div>
-				<div id="titulo"><p>Sistema para Testes Online v 1.0</p></div>
+<body background="images/fundo.jpg" >
+<div id="tudo">
+		<div id="topo">
+			<div id="logo"></div>
+			<div id="titulo">
+			<p>Sistema para Testes Online v 2.0</p>
+			</div>
 		<div id="dados-user">Olá, <?php echo "<b><font color='#17EC29'>". $_SESSION['usuario']."</font></b>";?> : <?php echo "<b><font color='#17EC29'>".  $_SESSION['user_tipo_nome']."</font></b>";?>, Seja bem vindo(<a href="logout.php">sair</a>)</div>
-			</div>
+		</div>
 		
-		<div id="body">
-			<div id="link-home"><a href="<?php echo $_SESSION['user_url'];?>">Menu Principal</a></div>
-    		<div id="menu" >
-				<div class="texto_p" id="texto">Resolver Prova</div>
-			</div>
-			
-			<div id="info">	
-				<form id="form1" name="form1" method="post" action="">
-					<fieldset style="height: 240px">
-						<legend>Dados da Prova</legend>
-							<div id="prova-area">Área:
-								<select name="ques-area" size="1" id="ques-area">
-									<option value='-1'>Selecione uma Área</option>
-                                     <?	include("conectaBD.php");
-									  $area = mysql_query("SELECT * FROM tb_area",$conexao);
-									
-									 if (mysql_num_rows($area)>0){
-									 
-									 while($area_row=mysql_fetch_array($area)){
-									 $tb_area_nome=nl2br($area_row['tb_area_nome']);
-									 $tb_area_id=$area_row['tb_area_id'];
-									 echo "<option value='".$tb_area_id."'>$tb_area_nome</option>";
-									 }									 
-									 }else{
-									 echo "<option value=''>Nenhuma Area Cadastrada</option>";
-									 } ?>
-									 <option></option>
-								</select>
-							</div>
-							
-							<div id="prova-disciplina">Disciplina:
-								<select name="ques-disci" size="1" id="ques-disci">
-									<option>Selecione a Disciplina</option>
-								</select>
-							</div>
-						
-							<div id="prova-assunto">Assunto:
-								<select name="ques-assunto" id="ques-assunto">
-									<option>Selecione o Assunto</option>
-								</select>
-							</div>
-							<div id="prova-dificuldade">Nível de Dificuldade:
-								<select name="ques-dific" size="1" id="ques-dific">
-									<option>Dificuldade da Prova</option>
-									<option value="1">MUITO FÁCIL</option>
-									<option value="2">FÁCIL</option>
-									<option value="3">NORMAL</option>
-									<option value="4">DIFÍCIL</option>
-									<option value="5">MUITO DIFÍCIL</option>
-								</select>
-							</div>
-							<div id="btn-confirm-ques-prova">
-								<input type="submit" name="prova-btn-confirmar" id="prova-btn-confirmar" 
-								value="Iniciar" style="height: 28px; width:120px"/>
-							</div>
-							
-							<div id="btn-cancelar-prova">
-								<input type="button" onclick="location.href='<?php echo $_SESSION['user_url'];?>'" name="prova-btn-cancelar" id="prova-btn-cancelar" value="Cancelar" 
-								style="height: 28px; width: 120px" />
-							</div>        
-
-							<div id="prova-nro-ques">Número de Questões:
-								<select name="prova-nro" size="1" id="prova-nro">
-									<option>Número de questões</option>
-									<option value="5">5 Questões</option>
-									<option value="10">10 Questões</option>
-									<option value="15">15 Questões</option>
-								</select>
-							</div>
-						</fieldset>
-					</form>
+	<div id="body">
+<div id="link-home"><a href="<?php echo $_SESSION['user_url'];?>">Menu Principal</a></div>
+				<div id="menu" >
+					<div class="texto_p" id="texto">Resolver Teste</div>
 				</div>
+			<div id="info">
+			  <form id="form1" name="form1" method="post" >
+					<div id="teste-enun" ><?php echo $enunciado; ?></div>
+					<div id="options">
+						<ul>
+							<li><input type='radio' name='botao' id='botao' value='1' /><?php echo $tb_questao_op_1;?></li>
+							<li><input type='radio' name='botao' id='botao' value='2'/><?php echo $tb_questao_op_2;?></li>
+							<li><input type='radio' name='botao' id='botao' value='3'/><?php echo $tb_questao_op_3;?></li>
+							<li><input type='radio' name='botao' id='botao'  value='4'/><?php echo $tb_questao_op_4;?></li>
+							<li><input type='radio' name='botao'  id='botao' value='5' /><?php echo$tb_questao_op_5;?></li>
+						</ul>
+					</div>
+					
+					<!--<div id="teste-enun" ><?php echo $enunciado; ?></div>
+					<div id="teste-op1" ><input type='radio' name='botao' id='botao' value='1' /> 
+					<?php echo $tb_questao_op_1;?></div>
+				  <div id="teste-op2"  ><input type='radio' name='botao' id='botao' value='2'/> 
+				  <?php echo $tb_questao_op_2;?></div>
+				  <div id="teste-op3" ><input type='radio' name='botao' id='botao' value='3'/> 
+				    <?php echo $tb_questao_op_3;?></div>
+          <div id="teste-op4"><input type='radio' name='botao' id='botao'  value='4'/> 
+            <?php echo $tb_questao_op_4;?></div>
+		      <div id="teste-op5"><input type='radio' name='botao'  id='botao' value='5' /> 
+		        <?php echo$tb_questao_op_5;?></div>							
+<input type='hidden' name='resp' id='resp' value='<?php echo $tb_questao_op_correta;?>'/>-->
+					<div id="teste-nova-questao"><input type="button" name="tes-btn-confirmar" id="tes-btn-confirmar"value="Corrigir" style="height: 28px; width:120px"/>
+				  </div>
+				<div id="teste-nova"><input type="button" onclick="location.href='resolve_teste.php'"name="tes-btn-nova-questao" id="tes-btn-nova"value="Nova Questão" style="height: 28px; width:120px"/>
+			    </div>
+					<div id="teste-cancela">
+						<input type="button" onclick="location.href='<?php echo $_SESSION['user_url'];?>'" name="teses-btn-cancelar" id="teses-btn-cancelar" value="Sair" style="height: 28px; width: 120px" />
+</div>
+								
+              </form>
+				<div id="mensagem"></div>
+                <div id="ver"><a id="exibir" href="#">Resposta Correta</a></div>				
 			</div>
+  </div>
+	
 			<div id="rodape">
-				<p align="center">Desenvolvido por Darlisson Marinho e Iasmim Cunha</p>
-				</div>
+			  <p align="center">Desenvolvido por Darlisson Marinho e Iasmim Cunha</p>
 			</div>
-	</body>
+		</div>
+    
+
+
+</body>
 </html>
 
 <?php } else {
@@ -129,7 +199,7 @@ if ($_SESSION['validacao'] == "1" )
 ?>
 
 <script type="text/javascript">
-alert("Somente usuários logados podem realizar a prova");
+alert("Você precisa estar logado para realizar o teste");
 </script>
 
 <?

@@ -15,7 +15,7 @@ include("conectaBD.php");
 		
 	<?php
 		$lista=mysql_fetch_array($questao);
-		$enunciado= nl2br($lista['tb_questao_enunciado']);
+		$enunciado = ($lista['tb_questao_enunciado']);
 		$tb_questao_op_1=($lista['tb_questao_op_1']);
 		$tb_questao_op_2=($lista['tb_questao_op_2']);
 		$tb_questao_op_3=($lista['tb_questao_op_3']);
@@ -37,68 +37,62 @@ $(document).ready(function() {
 			
 				$('#tes-btn-confirmar').click(function() 
 				{    
-					//$("#teste-op1").css('backgroundColor','#c00'); 
-					
-					var valor = "";
-					
-					$('input:radio[name=botao]').each(function()
-					{
-						if ($(this).is(':checked'))
-						{
-							valor = parseInt($(this).val());
-					}})
-					corrige(valor,$('#resp').val());
-				})
-				$('a#exibir').click(function(){
-				var correto = parseInt($('#resp').val());
-				switch(correto){
-							case 1:$("#teste-op1").css('backgroundColor','#0c3'); break; 
-							case 2:$("#teste-op2").css('backgroundColor','#0c3');break; 
-							case 3:$("#teste-op3").css('backgroundColor','#0c3'); break; 
-							case 4:$("#teste-op4").css('backgroundColor','#0c3'); break; 
-							case 5: $("#teste-op5").css('backgroundColor','#0c3'); break; 
+				var valor = "";
+				$('input:radio[name=botao]').each(function()
+				{
+				if ($(this).is(':checked'))
+				{
+				valor = parseInt($(this).val());
 				}
-				//$('#body').slideUp(600).delay(600).slideDown(600);
-      	   })
-			
-		
-			
-			})
+				});
+				corrige(valor,$('input:hidden[id=resp]').val());
+				console.log(valor);
+				console.log($('input:hidden[id=resp]').val());
+				});
+				$('a#exibir').click(function(){
+				var correto = parseInt($('input:hidden[id=resp]').val());
+				switch(correto){
+					case 1:$("li[id=op1]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+					case 2:$("li[id=op2]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600);break; 
+					case 3:$("li[id=op3]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+					case 4:$("li[id=op4]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+					case 5:$("li[id=op5]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				}
+				//$('#body').slideDown(600).delay(600).slideDown(600);
+      	   });
+	});
 			
 	function corrige( valor,correto){
+		$('#tes-btn-confirmar').hide();
+	
 		if(valor == correto){
-		
 		$('#mensagem').text('Resposta Correta!');
 		$('#mensagem').css('color', 'green');
 		switch(valor){
-							case 1:$("#teste-op1").css('backgroundColor','#0c3'); break; 
-							case 2:$("#teste-op2").css('backgroundColor','#0c3');break; 
-							case 3:$("#teste-op3").css('backgroundColor','#0c3'); break; 
-							case 4:$("#teste-op4").css('backgroundColor','#0c3'); break; 
-							case 5: $("#teste-op5").css('backgroundColor','#0c3'); break; 
-							}
+				case 1:$("li[id=op1]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 2:$("li[id=op2]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 3:$("li[id=op3]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 4:$("li[id=op4]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 5:$("li[id=op5]").css('backgroundColor','#0c3').fadeOut(0).delay(100).fadeIn(600); break; 
+				}
 							
 		return 0;
 			}
 						
 		else{
-		
 		switch(valor){
-							case 1:$("#teste-op1").css('backgroundColor','#c00'); break; 
-							case 2:$("#teste-op2").css('backgroundColor','#c00');break; 
-							case 3:$("#teste-op3").css('backgroundColor','#c00');break; 
-							case 4:$("#teste-op4").css('backgroundColor','#c00'); break; 
-							case 5: $("#teste-op5").css('backgroundColor','#c00');break; 
-							}
+				case 1:$("li[id=op1]").css('backgroundColor','#c00').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 2:$("li[id=op2]").css('backgroundColor','#c00').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 3:$("li[id=op3]").css('backgroundColor','#c00').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 4:$("li[id=op4]").css('backgroundColor','#c00').fadeOut(0).delay(100).fadeIn(600); break; 
+				case 5:$("li[id=op5]").css('backgroundColor','#c00').fadeOut(0).delay(100).fadeIn(600); break;  
+				}
 		$('#mensagem').text('Resposta Incorreta!');
 		$('#mensagem').css('color', 'red');
 		$('#ver').css('visibility','visible');
 			}
 		}
 
-			
-			
-			
 </script>
 
 <style type="text/css">
@@ -142,17 +136,18 @@ $(document).ready(function() {
 			<div id="info">
 			  <form id="form1" name="form1" method="post" >
 					<div id="teste-enun" ><?php echo $enunciado; ?></div>
-					<div id="teste-op1" ><input type='radio' name='botao' id='botao' value='1' /> 
-					<?php echo $tb_questao_op_1;?></div>
-				  <div id="teste-op2"  ><input type='radio' name='botao' id='botao' value='2'/> 
-				  <?php echo $tb_questao_op_2;?></div>
-				  <div id="teste-op3" ><input type='radio' name='botao' id='botao' value='3'/> 
-				    <?php echo $tb_questao_op_3;?></div>
-          <div id="teste-op4"><input type='radio' name='botao' id='botao'  value='4'/> 
-            <?php echo $tb_questao_op_4;?></div>
-		      <div id="teste-op5"><input type='radio' name='botao'  id='botao' value='5' /> 
-		        <?php echo$tb_questao_op_5;?></div>							
-<input type='hidden' name='resp' id='resp' value='<?php echo $tb_questao_op_correta;?>'/>
+					<div id="options">
+						<ul>
+							<li id="op1"><input type='radio' name='botao' id='botao' value='1' /><?php echo $tb_questao_op_1;?></li>
+							<li id="op2"><input type='radio' name='botao' id='botao' value='2'/><?php echo $tb_questao_op_2;?></li>
+							<li id="op3"><input type='radio' name='botao' id='botao' value='3'/><?php echo $tb_questao_op_3;?></li>
+							<li id="op4"><input type='radio' name='botao' id='botao'  value='4'/><?php echo $tb_questao_op_4;?></li>
+							<li id="op5"><input type='radio' name='botao' id='botao' value='5' /><?php echo$tb_questao_op_5;?></li>
+							<li id="resp"><input type='hidden' name='resp' id='resp' value='<?php echo $tb_questao_op_correta;?>'/> </li>
+							
+						</ul>
+					</div>
+					
 					<div id="teste-nova-questao"><input type="button" name="tes-btn-confirmar" id="tes-btn-confirmar"value="Corrigir" style="height: 28px; width:120px"/>
 				  </div>
 				<div id="teste-nova"><input type="button" onclick="location.href='resolve_teste.php'"name="tes-btn-nova-questao" id="tes-btn-nova"value="Nova Questão" style="height: 28px; width:120px"/>
@@ -163,7 +158,7 @@ $(document).ready(function() {
 								
               </form>
 				<div id="mensagem"></div>
-                <div id="ver"><a id="exibir" href="#">Ver a Resposta Correta</a></div>				
+                <div id="ver"><a id="exibir" href="#">Resposta Correta</a></div>				
 			</div>
   </div>
 	
