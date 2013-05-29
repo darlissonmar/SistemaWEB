@@ -71,7 +71,7 @@ if ($_SESSION['validacao'] == "1" && ($_SESSION['user_tipo'] == "1" || $_SESSION
 		  </tr>
 		  <tr>
 		  	<td>Disciplinas:</td>	
-		  	<td> <?php echo $controller->recuperarQtdeDisciplinaTodosDAO(); ?><</td>  
+		  	<td> <?php echo $controller->recuperarQtdeDisciplinaTodosDAO(); ?></td>  
 		  </tr>		  
 		  </table>
         </div>

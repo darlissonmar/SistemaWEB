@@ -17,8 +17,8 @@ require_once "../banco.con.php";
 	$f = mysql_fetch_object($sql);
 		
 		if (mysql_num_rows($sql)==0){
-		echo "<script>alert('Não foi possível Logar: Login e/ou Senha inválido );</script>";
-		echo "<script>location.href = 'login.php';</script>";
+		echo "<script>alert('Não foi possível Logar: Login e/ou Senha inválido ');</script>";
+		echo "<script>location.href = '../login.php';</script>";
 	}else{
 		$validacao = "1";
 		session_start();

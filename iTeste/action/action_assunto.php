@@ -1,15 +1,15 @@
 <?php	
-require('../class/class.controller.php');
+require_once('../class/class.controller.php');
 require "../banco.con.php";
 
 	session_start();
 	
-	$id_user2			= 	$_SESSION['id_usuario'];
+	$id_user2		= 	$_SESSION['id_usuario'];
 	$nome_assunto 		=	$_POST['nome'];
-	$id_disciplina 		=   $_POST['id_disciplina'];
+	$id_disciplina 		=       $_POST['id_disciplina'];
 	
 	ini_set('default_charset','UTF-8');				
-	ini_set("display_errors",0);
+	//ini_set("display_errors",0);
 	try {
 		$banco->iniciarTransacao();
 	

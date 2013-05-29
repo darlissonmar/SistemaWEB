@@ -16,8 +16,8 @@ class Controller{
 		
 	public function Controller(BancodeDados $banco) { 
 		$this->banco = $banco; 
-		ini_set('default_charset','UTF-8');				
-		ini_set("display_errors",0);	
+		//ini_set('default_charset','UTF-8');				
+		//ini_set("display_errors",0);	
 	}
 
 //========================= AREA ========================================

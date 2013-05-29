@@ -71,7 +71,7 @@ if ($_SESSION['validacao'] == "1")
           <table>
            <tr>
 		 	 <td>Questões:</td>
-		 	 <td><?php echo $controller->recuperarQtdeQuestaoTodosDAO(); ?><td>
+		 	 <td><?php echo $controller->recuperarQtdeQuestaoTodosDAO(); ?></td>
 		  </tr>
 		  <tr>
 		  	<td>Áreas:</td>
